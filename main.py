@@ -1,5 +1,6 @@
 import math
 from tkinter import *
+from tkinter import messagebox
 # ---------------------------- CONSTANTS ------------------------------- #
 PINK = "#e2979c"
 RED = "#e7305b"
@@ -29,12 +30,16 @@ def start_timer():
     if reps % 8 == 0:
         count_down(LONG_BREAK_MIN * minute)
         timer_lbl.config(text='Breather', fg=RED)
+        messagebox.showwarning('Long Break', 'Take a walk for 20 minutes')
     elif reps % 2 == 0:
         count_down(SHORT_BREAK_MIN * minute)
         timer_lbl.config(text='Break', fg=PINK)
+        messagebox.showwarning('Take A Break!', 'Have a short break for 5 minutes')
     else:
         count_down(WORK_MIN * minute)
         timer_lbl.config(text='LET\'S GO!', fg=GREEN)
+        if reps > 1:
+            messagebox.showwarning('Get back there!', 'Continue what you were doing')
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- # 
 def count_down(count):
